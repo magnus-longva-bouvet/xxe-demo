@@ -2,6 +2,7 @@ package no.sikkerhetshull.xxe;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,7 +17,7 @@ public class XmlController {
     @Autowired
     private XmlParserService xmlParserService;
 
-    @PostMapping("/")
+    @GetMapping("/")
     public String getData() {
         return "Dette er en webside lagd for å være sårbar for XXE. Prøv POST mot /hello";
     }

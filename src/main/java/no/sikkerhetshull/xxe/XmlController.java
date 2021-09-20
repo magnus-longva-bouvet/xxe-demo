@@ -18,10 +18,6 @@ public class XmlController {
 
     @PostMapping(value = "/hello", consumes = {MediaType.APPLICATION_XML_VALUE, MediaType.TEXT_XML_VALUE})
     public String postData(@RequestBody String xmlString) throws TransformerException, SAXException, IOException {
-//        try {
             return xmlParserService.parse(xmlString);
-//        } //catch (Exception e) {
-//            return e.getStackTrace().toString();
-//        }
     }
 }

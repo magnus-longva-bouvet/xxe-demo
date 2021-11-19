@@ -4,6 +4,6 @@ RUN mvn install
 
 FROM alpine:3.13
 COPY --from=BUILD /root/.m2/repository/no/sikkerhetshull/xxe/0.0.1-SNAPSHOT/xxe-0.0.1-SNAPSHOT.jar /app.jar
-COPY secret_api_key.txt /
+COPY secret_api_key.txt dtd.xml /
 RUN apk add --no-cache openjdk11-jre
 CMD ["java", "-jar", "/app.jar"]

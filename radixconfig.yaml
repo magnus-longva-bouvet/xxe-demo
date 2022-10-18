@@ -1,0 +1,45 @@
+apiVersion: radix.equinor.com/v1
+kind: RadixApplication
+metadata:
+  name: magnus-foredrag
+spec:
+  environments:
+    - name: prod
+      build:
+        from: main
+      # egress:
+      #   allowRadix: true
+      #   rules:
+      #   - destinations:
+      #     - "10.0.0.8/32"
+      #     - "10.0.0.11/32"
+      #     ports:
+      #     - port: 3306
+      #       protocol: TCP
+  components:
+    - name: redis
+      dockerfileName: Dockerfile.redis
+      secrets:
+        - REDIS_PASSWORD
+      ports:
+        - name: redis
+          port: 6379
+    - name: java
+      replicas: 1
+      authentication:
+        oauth2:
+          clientId: 5e48ca1f-a2bf-4dec-b96d-bbf8ce69f9f6
+          scope: openid profile email offline_access
+          setXAuthRequestHeaders: true
+          setAuthorizationHeader: true
+          sessionStoreType: redis
+          redisStore:
+            connectionUrl: redis://redis:6379
+      src: ./xxe-demo
+      ports:
+        - name: publicport
+          port: 8888
+      variables:
+        port: 8888
+      publicPort: publicport
+      runAsNonRoot: true

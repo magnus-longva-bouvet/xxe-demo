@@ -24,6 +24,12 @@ spec:
       ports:
         - name: redis
           port: 6379
+    - name: evildtd
+      src: ./evil-dtd
+      publicPort: publicport2
+      ports:
+        - name: publicport2
+          port: 8888
     - name: java
       replicas: 1
       authentication:

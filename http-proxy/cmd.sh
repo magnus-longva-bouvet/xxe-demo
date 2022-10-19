@@ -1,3 +1,3 @@
 #!/bin/sh
-echo ${CA_KEY} | base64 -d > /config/ca.key.pem
-/app/inkfish -cacert /config/ca.pem -cakey /config/ca.key.pem -metadata none -config /config
+envsubst < /squid.conf.template > /squid.conf
+/usr/sbin/squid -f /squid.conf -NYC

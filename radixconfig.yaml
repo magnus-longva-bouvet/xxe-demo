@@ -53,7 +53,7 @@ spec:
           port: 8888
       variables:
         port: 8888
-        proxyport: 8080
+        proxyport: 3128
       publicPort: publicport
       runAsNonRoot: true
       environmentConfig:
@@ -64,12 +64,10 @@ spec:
       src: ./http-proxy
       ports:
         - name: proxyport
-          port: 8080
+          port: 3128
       variables:
-        proxyport: 8080
+        proxyport: 3128
       runAsNonRoot: true
-      secrets:
-        - CA_KEY
       environmentConfig:
         - environment: noproxy
           replicas: 0

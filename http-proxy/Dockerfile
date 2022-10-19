@@ -1,8 +1,7 @@
-FROM alpine:3.16
-COPY --from=bsycorp/inkfish /app/inkfish /app/inkfish
-COPY proxy.conf ca.pem /config/
+FROM ubuntu/squid
 COPY cmd.sh /
-USER root
-RUN chown -R 10001:10001 /cmd.sh /config/
-USER 10001
+RUN apt update && apt install gettext -y && touch /squid.conf && chown 1000:1000 /cmd.sh /squid.conf
+COPY squid.conf /squid.conf.template
+USER 1000
+ENTRYPOINT []
 CMD /cmd.sh

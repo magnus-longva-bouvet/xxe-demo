@@ -22,7 +22,7 @@ public class XmlController {
     public XmlController() {
         this.restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
-        headers.add("user-agent", "hilsen Magnus");
+        headers.add("user-agent", "magnus foredrag");
         this.entity = new HttpEntity<String>(null, headers);
     }
 
@@ -43,9 +43,9 @@ public class XmlController {
 
     @GetMapping("/weather_api_status")
     public String getWeatherApiStatus() {
-        String url = "https://api.met.no/weatherapi/locationforecast/2.0/status.json";
+        String url = "https://www-radix-canary-golang-prod.dev.radix.equinor.com/";
         ResponseEntity<String> respEntity = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
-        return respEntity.getBody() +"<br><br> hentet fra api.met.no<br>" + respEntity.getHeaders().get("Date");
+        return respEntity.getBody() +"<br><br> hentet fra www-radix-canary-golang-prod.dev.radix.equinor.com<br>" + respEntity.getHeaders().get("Date");
     }
 
     @PostMapping(value = "/hello", consumes = {MediaType.APPLICATION_XML_VALUE, MediaType.TEXT_XML_VALUE, MediaType.APPLICATION_FORM_URLENCODED_VALUE})

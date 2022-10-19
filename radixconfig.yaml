@@ -53,6 +53,11 @@ spec:
         proxyport: 8080
       publicPort: publicport
       runAsNonRoot: true
+      environmentConfig:
+        - environment: proxy
+          replicas: 0
+          variables:
+            use_proxy: "true"
     - name: http-proxy
       src: ./http-proxy
       ports:
@@ -63,3 +68,6 @@ spec:
       runAsNonRoot: true
       secrets:
         - CA_KEY
+      environmentConfig:
+        - environment: noproxy
+          replicas: 0

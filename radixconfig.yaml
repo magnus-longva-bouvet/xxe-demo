@@ -58,7 +58,6 @@ spec:
       runAsNonRoot: true
       environmentConfig:
         - environment: proxy
-          replicas: 0
           variables:
             use_proxy: "true"
     - name: http-proxy

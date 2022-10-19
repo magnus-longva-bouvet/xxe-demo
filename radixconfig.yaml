@@ -33,12 +33,6 @@ spec:
       ports:
         - name: publicport2
           port: 8080
-    - name: evildtd
-      src: ./evil-dtd
-      publicPort: publicport2
-      ports:
-        - name: publicport2
-          port: 8080
     - name: java
       replicas: 1
       authentication:

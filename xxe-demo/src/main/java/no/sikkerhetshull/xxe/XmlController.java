@@ -1,9 +1,10 @@
 package no.sikkerhetshull.xxe;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import org.xml.sax.SAXException;
 
 import javax.xml.transform.TransformerException;
@@ -13,8 +14,17 @@ import java.nio.charset.StandardCharsets;
 @RestController
 public class XmlController {
 
+    private final RestTemplate restTemplate;
+    private final HttpEntity<String> entity;
     @Autowired
     private XmlParserService xmlParserService;
+
+    public XmlController() {
+        this.restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("user-agent", "hilsen Magnus");
+        this.entity = new HttpEntity<String>(null, headers);
+    }
 
     @GetMapping("/")
     public String getData() {
@@ -29,6 +39,13 @@ public class XmlController {
                 "</body>\n" +
                 "</html>\n" +
                 "\n";
+    }
+
+    @GetMapping("/weather_api_status")
+    public String getWeatherApiStatus() {
+        String url = "https://api.met.no/weatherapi/locationforecast/2.0/status.json";
+        ResponseEntity<String> respEntity = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
+        return respEntity.getBody() +"<br><br> hentet fra api.met.no<br>" + respEntity.getHeaders().get("Date");
     }
 
     @PostMapping(value = "/hello", consumes = {MediaType.APPLICATION_XML_VALUE, MediaType.TEXT_XML_VALUE, MediaType.APPLICATION_FORM_URLENCODED_VALUE})

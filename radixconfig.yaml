@@ -4,7 +4,10 @@ metadata:
   name: magnus-foredrag
 spec:
   environments:
-    - name: prod
+    - name: noproxy
+      build:
+        from: main
+    - name: proxy
       build:
         from: main
       # egress:
@@ -30,6 +33,12 @@ spec:
       ports:
         - name: publicport2
           port: 8080
+    - name: evildtd
+      src: ./evil-dtd
+      publicPort: publicport2
+      ports:
+        - name: publicport2
+          port: 8080
     - name: java
       replicas: 1
       authentication:
@@ -47,5 +56,16 @@ spec:
           port: 8888
       variables:
         port: 8888
+        proxyport: 8080
       publicPort: publicport
       runAsNonRoot: true
+    - name: http-proxy
+      src: ./http-proxy
+      ports:
+        - name: proxyport
+          port: 8080
+      variables:
+        proxyport: 8080
+      runAsNonRoot: true
+      secrets:
+        - CA_KEY

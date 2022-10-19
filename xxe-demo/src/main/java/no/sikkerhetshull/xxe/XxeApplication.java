@@ -13,5 +13,4 @@ public class XxeApplication {
 		app.setDefaultProperties(Collections.singletonMap("server.port", System.getenv("port")));
 		app.run(args);
 	}
-
 }

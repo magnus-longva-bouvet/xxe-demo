@@ -7,4 +7,4 @@ COPY --from=BUILD /root/.m2/repository/no/sikkerhetshull/xxe/0.0.1-SNAPSHOT/xxe-
 COPY secret_api_key.txt /
 RUN apk add --no-cache openjdk11-jre
 USER 1000
-CMD ["java", "-jar", "/app.jar"]
+CMD "java -Dhttp.proxyHost=http-proxy -Dhttp.proxyPort=${proxyport} -Dhttps.proxyHost=http-proxy -Dhttps.proxyPort=${proxyport} -jar /app.jar"

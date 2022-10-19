@@ -41,8 +41,8 @@ public class XmlController {
                 "\n";
     }
 
-    @GetMapping("/weather_api_status")
-    public String getWeatherApiStatus() {
+    @GetMapping("/canary_status")
+    public String getCanaryStatus() {
         String url = "https://www-radix-canary-golang-prod.dev.radix.equinor.com/";
         ResponseEntity<String> respEntity = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
         return respEntity.getBody() +"<br><br> hentet fra www-radix-canary-golang-prod.dev.radix.equinor.com<br>" + respEntity.getHeaders().get("Date");

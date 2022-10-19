@@ -4,7 +4,7 @@ RUN mvn install
 
 FROM alpine:3.16
 COPY --from=BUILD /root/.m2/repository/no/sikkerhetshull/xxe/0.0.1-SNAPSHOT/xxe-0.0.1-SNAPSHOT.jar /app.jar
-COPY secret_api_key.txt /
-RUN apk add --no-cache openjdk11-jre
+COPY secret_api_key.txt ca.pem cmd.sh /
+RUN apk add --no-cache openjdk11-jre ca-certificates && cat /ca.pem >> /etc/ssl/certs/ca-certificates.crt && update-ca-certificates && chown 1000:1000 /cmd.sh
 USER 1000
-CMD "java -Dhttp.proxyHost=http-proxy -Dhttp.proxyPort=${proxyport} -Dhttps.proxyHost=http-proxy -Dhttps.proxyPort=${proxyport} -jar /app.jar"
+CMD /cmd.sh

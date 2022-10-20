@@ -10,7 +10,7 @@ public class XxeApplication {
 
 	public static void main(String[] args) {
 		SpringApplication app = new SpringApplication(XxeApplication.class);
-		app.setDefaultProperties(Collections.singletonMap("server.port", System.getenv("port")));
+		app.setDefaultProperties(Collections.singletonMap("server.port", System.getenv("JAVA_SERVICE_PORT")));
 		app.run(args);
 	}
 }

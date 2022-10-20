@@ -10,15 +10,6 @@ spec:
     - name: proxy
       build:
         from: main
-      # egress:
-      #   allowRadix: true
-      #   rules:
-      #   - destinations:
-      #     - "10.0.0.8/32"
-      #     - "10.0.0.11/32"
-      #     ports:
-      #     - port: 3306
-      #       protocol: TCP
   components:
     - name: redis
       dockerfileName: Dockerfile.redis

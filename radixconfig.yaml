@@ -42,9 +42,6 @@ spec:
       ports:
         - name: publicport
           port: 8888
-      variables:
-        port: 8888
-        proxyport: 3128
       publicPort: publicport
       runAsNonRoot: true
       environmentConfig:
@@ -56,8 +53,6 @@ spec:
       ports:
         - name: proxyport
           port: 3128
-      variables:
-        proxyport: 3128
       runAsNonRoot: true
       environmentConfig:
         - environment: noproxy

@@ -2,11 +2,11 @@ apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
   labels:
-    radix-app: magnus-foredrag
+    radix-app: xxe-demo
     radix-env: proxy
     radix-component: java
   name: deny-all-outbound-except-dns-from-java-app
-  namespace: magnus-foredrag-proxy
+  namespace: xxe-demo-proxy
 spec:
   egress:
     - ports:
@@ -22,7 +22,7 @@ spec:
     - to:
         - namespaceSelector:
             matchLabels:
-              radix-app: magnus-foredrag
+              radix-app: xxe-demo
               radix-env: proxy
   podSelector:
     matchLabels:
@@ -34,11 +34,11 @@ apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
   labels:
-    radix-app: magnus-foredrag
+    radix-app: xxe-demo
     radix-env: noproxy
     radix-component: java
   name: deny-all-outbound-except-dns-from-java-app
-  namespace: magnus-foredrag-noproxy
+  namespace: xxe-demo-noproxy
 spec:
   egress:
     - ports:

